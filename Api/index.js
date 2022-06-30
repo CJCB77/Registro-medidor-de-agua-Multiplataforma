@@ -5,6 +5,7 @@ const db = require('./database/connection');
 const registrosRoutes = require('./routes/registros');
 const tareasRoutes = require('./routes/tareas');
 const viviendaRoutes = require('./routes/vivienda');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use('/uploads',express.static('uploads'));
 app.use('/api/registros', registrosRoutes);
 app.use('/api/tareas', tareasRoutes);
 app.use('/api/viviendas', viviendaRoutes);
+app.use('/api/auth', authRoutes);
 
 require("dotenv").config();
 
