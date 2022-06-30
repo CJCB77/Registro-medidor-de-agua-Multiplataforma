@@ -4,6 +4,7 @@ const db = require('./database/connection');
 //Rutas
 const registrosRoutes = require('./routes/registros');
 const tareasRoutes = require('./routes/tareas');
+const viviendaRoutes = require('./routes/vivienda');
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use('/uploads',express.static('uploads'));
 //Utilizar las rutas
 app.use('/api/registros', registrosRoutes);
 app.use('/api/tareas', tareasRoutes);
+app.use('/api/viviendas', viviendaRoutes);
 
 require("dotenv").config();
 
