@@ -1,11 +1,18 @@
 const express = require('express');
 const db = require('./database/connection');
+
+//Rutas
 const registrosRoutes = require('./routes/registros');
+const tareasRoutes = require('./routes/tareas');
 
 const app = express();
 
 app.use(express.json());
-app.use('/api', registrosRoutes);
+app.use('/uploads',express.static('uploads'));
+
+//Utilizar las rutas
+app.use('/api/registros', registrosRoutes);
+app.use('/api/tareas', tareasRoutes);
 
 require("dotenv").config();
 

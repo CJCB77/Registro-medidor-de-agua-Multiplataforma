@@ -2,12 +2,25 @@ const Router = require('express').Router;
 const router = Router();
 const registrosController = require('../controller/registrosController');
 
-router.route('/registros').get(registrosController.getRegistros)
-                            .post(registrosController.createRegistro);
-                            
-router.route('/registros/:id').get(registrosController.getRegistroById)
-                                .put(registrosController.updateRegistro)
-                                .delete(registrosController.deleteRegistro);
+//Multer para subir imagenes
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './uploads/')
+    }
+    , filename: function (req, file, cb) {
+        cb(null, new Date().toISOString() + file.originalname)
+    }
+})
+
+const upload = multer({ storage: storage });
+
+router.get('/',registrosController.getRegistros);
+router.post('/add',upload.single('imagen'),registrosController.createRegistro);
+
+router.get('/:id',registrosController.getRegistroById);
+router.put('/update/:id',registrosController.updateRegistro)
+router.delete('/delete/:id',registrosController.deleteRegistro);
                                 
 
 module.exports = router;
