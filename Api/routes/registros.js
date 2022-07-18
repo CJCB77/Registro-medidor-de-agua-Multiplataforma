@@ -16,11 +16,14 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 router.get('/',registrosController.getRegistros);
+router.get('/complete',registrosController.getRegistroCompleto);
 router.post('/add',upload.single('imagen'),registrosController.createRegistro);
 
 router.get('/:id',registrosController.getRegistroById);
 router.put('/update/:id',registrosController.updateRegistro)
 router.delete('/delete/:id',registrosController.deleteRegistro);
+
+
                                 
 
 module.exports = router;

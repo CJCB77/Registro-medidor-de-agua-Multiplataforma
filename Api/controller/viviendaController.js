@@ -35,11 +35,11 @@ const getViviendaById = async (req, res) => {
 }
 
 const updateVivienda = async (req, res) => {
-    const {id} = req.params;
+    const {codigo} = req.params;
     const {direccion,mz,villa} = req.body;
     try{
-        const query = `UPDATE vivienda SET direccion = $1, mz = $2, villa = $3 WHERE id = $4`;
-        await db.query(query, [direccion,mz,villa,id]);
+        const query = `UPDATE vivienda SET direccion = $1, mz = $2, villa = $3 WHERE codigo = $4`;
+        await db.query(query, [direccion,mz,villa,codigo]);
         res.json({"Message":"Vivienda actualizada"});
     }
     catch(err){
